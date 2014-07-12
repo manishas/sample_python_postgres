@@ -8,7 +8,9 @@ addons:
   
 env:
   - LARAVEL_ENV=CI
-  
+  global:
+    - APP_NAME=lacourv2
+      
 install:
   - pip install -r requirements.txt
 
