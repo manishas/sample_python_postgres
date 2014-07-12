@@ -3,6 +3,12 @@ language: python
 python:
   - 2.7
   
+addons:
+  postgresql : "9.3"
+  
+env:
+  - LARAVEL_ENV=CI
+  
 install:
   - pip install -r requirements.txt
 
@@ -10,7 +16,8 @@ install:
 # Create a DB as part of before script to use it
 
 before_script:
-  - psql -c 'create database test;' -U postgres
+  - echo "extension = redis.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - psql -c 'create database lacourv2_test;' -U postgres
   - mkdir -p shippable/testresults
   - mkdir -p shippable/codecoverage
 
